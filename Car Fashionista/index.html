@@ -1,0 +1,232 @@
+<DOCTYPE html>
+<html lang="fr">  
+    <head>
+        <meta charset="utf-8">
+        <title>Espace pour la Vie</title>
+        
+        <meta name="description" content="Espace pour la vie, votre espace pour vivre idk je suis un gaphiste c'est pas ma job d'écrire ça">
+        <meta name="robots" content="index, follow">
+        
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <meta name="author" content="Isabelle Havasy"/>
+        
+        <link rel="canonical" href="https://thecarfashionista.com/" />
+        
+        <link rel="stylesheet" href="style.css">
+
+	    <meta name="keywords" content="Montréal, car review, car fashionista, the car fashionista, isabelle havasy">
+
+        <!--Liens vers la google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+        <link href="https://res.cloudinary.com/dr6lvwubh/raw/upload/v1581441981/Anicons/anicons-regular.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300&display=swap" rel="stylesheet">
+        <!--Liens vers la librairie d'icone sociaux-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <body>
+        <header id="header">
+        </header>
+        <nav>
+            <a class="b" href="index.html">Accueil</a>
+            <a class="i" href="insectarium.html">Articles</a>
+            <a class="p" href="planetarium.html">Essais Routiers</a>
+            <a class="j" href="botanique.html">À Propos</a>
+            <div id="nav_banner"></div>
+            <!--Rajouter un îcone 'settings' et 'recherche'-->
+        </nav>
+        <div class="titre">
+        <h1 class="site_titles" id="1">THE CAR</h1>
+        <h1 class="site_title" id="2">FASHIONISTA</h1>
+        <div id="header_img"></div>
+        </div>  
+        <img class="logo3" src="images/logobiodome.png">
+
+        <footer class="pied"><div class="pied1"></div>
+        <div class="sociaux">
+        <!--liens -->
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-pinterest"></a>
+        <a href="#" class="fa fa-snapchat-ghost"></a>
+        <a href="#" class="fa fa-flickr"></a>
+        </div>
+    </div>
+    <div class="pied3">
+    <p>© Tous droits réservés, The Car Fashionista. Design Emily Paz
+        </p></footer>
+
+        </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+var p2=document.getElementById("penguin1");
+var p1=document.getElementById("penguin2");
+var bg=document.getElementById("jardin");
+var life1=document.getElementById("life1");
+var life2=document.getElementById("life2");
+var xpos_1=0;
+var ypos_1=0;
+var xspeed_1=0;
+var yspeed_1=0;
+var dive_1=0;
+var fox=0;
+var life_1=50;
+
+var xpos_2=1000;
+var ypos_2=0;
+var xspeed_2=0;
+var yspeed_2=0;
+var dive_2=0;
+var falco=0;
+var life_2=50;
+
+var key;
+var vw;
+
+document.onkeypress = function (eventKeyName) {
+      eventKeyName = eventKeyName || window.event;
+      key=String.fromCharCode(eventKeyName.keyCode);
+
+      if (key=='a' && dive_1==0){
+          xspeed_1=-40;
+      }
+      else if (key=='d'){
+          xspeed_1=40;
+      }
+      else if (key=='w'){
+          jump1();
+      }
+
+      if (key=='j'){
+          xspeed_2=-40;
+      }
+      else if (key=='l' && dive_2==0){
+          xspeed_2=40;
+      }
+      else if (key=='i'){
+          jump2();
+      }
+}
+
+function jump1(){
+    if (ypos_1>1) {
+        if (dive_1==0){
+            dive_1=1;
+            xspeed_1=70;
+            yspeed_1=-10;
+        }
+        else {
+            dive_1=0;
+            xspeed_1=0;
+            yspeed_1=0;
+        }
+    }
+    else {
+        fox=1;
+    }
+}
+function jump2(){
+    if (ypos_2>1) {
+        if (dive_2==0){
+            dive_2=1;
+            xspeed_2=-70;
+            yspeed_2=-10;
+        }
+        else {
+            dive_2=0;
+            xspeed_2=0;
+            yspeed_2=0;
+        }
+    }
+    else {
+        falco=1;
+    }
+}
+
+function loop() {
+    xpos_1+=xspeed_1;
+    if (fox==1) {
+        yspeed_1=50;
+        fox=0;
+    }
+    else if (ypos_1<=0) {
+        ypos_1=0;
+        yspeed_1=0;
+        dive_1=0;
+    }
+    else {
+        yspeed_1-=5;
+    }
+    ypos_1+=yspeed_1;
+    p1.style.left=xpos_1;
+    p1.style.bottom=ypos_1;
+
+    xpos_2+=xspeed_2;
+    if (falco==1) {
+        yspeed_2=50;
+        falco=0;
+    }
+    else if (ypos_2<=0) {
+        ypos_2=0;
+        yspeed_2=0;
+        dive_2=0;
+    }
+    else {
+        yspeed_2-=5;
+    }
+    ypos_2+=yspeed_2;
+    p2.style.left=xpos_2;
+    p2.style.bottom=ypos_2;
+
+    if (dive_1==1 && xpos_1>xpos_2 && xpos_1<xpos_2+100 && ypos_1>ypos_2-100 && ypos_1<ypos_2+200 ) {
+        if (xspeed_2>0) {
+            life_2-=1;
+        }
+        else {
+            life_2-=5;
+        }
+        dive_1=0;
+        xspeed_1=-30;
+        xspeed_2=10;
+        yspeed_1=0;
+    }
+    if (dive_2==1 && xpos_2>xpos_1 && xpos_2<xpos_1+100 && ypos_2>ypos_1-100 && ypos_2<ypos_1+200 ) {
+        if (xspeed_1<0) {
+            life_1-=1;
+        }
+        else {
+            life_1-=5;
+        }
+        life_1-=5;
+        dive_2=0;
+        xspeed_2=30;
+        xspeed_1=-10;
+        yspeed_2=0;
+    }
+    life1.style.width=life_1+"vw";
+    life2.style.width=life_2+"vw";
+
+    if (life_1<0) {
+        bg.src=p2.src;
+        document.getElementById("1").innerHTML="PENGUIN"
+        document.getElementById("2").innerHTML="TWO"
+        document.getElementById("3").innerHTML="WINS"
+    }
+    else if (life_2<0) {
+        bg.src=p1.src;
+        document.getElementById("1").innerHTML="PENGUIN"
+        document.getElementById("2").innerHTML="ONE"
+        document.getElementById("3").innerHTML="WINS"
+    }
+}
+setInterval(loop, 50);
+        </script>
+    </body>
+</html>
